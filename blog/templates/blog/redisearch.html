@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Search By Redisearch
+{% endblock %}
+
+{% block content %}
+    <h1>Search By Redisearch</h1>
+    <form method="post" action="{% url 'blog:redisearch' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Search">
+    </form>
+    <h3>search result</h3>
+    {% for result_item in search_result %}
+        <h6>{{ result_item.title }}</h6>
+        <p>{{ result_item.body|truncatewords:5 }}</p>
+        <a href="{% url 'blog:redirect_to_post_detail' result_item.id %}">Go to</a>
+    {% empty %}
+        {% if request.method == 'POST' %}
+            Sorry, No result!
+        {% endif %}
+    {% endfor %}
+{% endblock %}
