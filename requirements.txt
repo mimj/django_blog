@@ -1,5 +1,5 @@
 asgiref==3.2.3
-Django==3.0.3
+Django==3.1.12
 django-elasticsearch-dsl==7.1.1
 django-seed==0.2.2
 django-taggit==1.2.0
